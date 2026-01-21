@@ -1,0 +1,35 @@
+= form_with(model: sock) do |form|
+  - if sock.errors.any?
+    %div{style: "color: red"}
+      %h2= "#{pluralize(sock.errors.count, "error")} prohibited this sock from being saved:"
+
+      %ul
+        - sock.errors.each do |error|
+          %li= error.full_message
+
+  %div
+    = form.label :name, style: "display: block"
+    = form.text_field :name
+
+  %div
+    = form.label :description, style: "display: block"
+    = form.textarea :description
+
+  %div
+    = form.label :gender, style: "display: block"
+    = form.text_field :gender
+
+  %div
+    = form.label :age, style: "display: block"
+    = form.number_field :age
+
+  %div
+    = form.label :height, style: "display: block"
+    = form.text_field :height
+
+  %div
+    = form.label :color, style: "display: block"
+    = form.text_field :color
+
+  %div
+    = form.submit

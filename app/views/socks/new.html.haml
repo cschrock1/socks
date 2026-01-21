@@ -1,0 +1,10 @@
+- content_for :title, "New sock"
+
+%h1 New sock
+
+= render "form", sock: @sock
+
+%br
+
+%div
+  = link_to "Back to socks", socks_path

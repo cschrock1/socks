@@ -1,3 +1,5 @@
+# Use of GET, SET, and POST indicate the controller's data management responsibilities. Might be using API calls, or at least the same terms.
+
 class SocksController < ApplicationController
   before_action :set_sock, only: %i[ show edit update destroy ]
 

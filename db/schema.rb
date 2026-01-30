@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_21_202257) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_23_192137) do
+  create_table "matches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "sock_1_id"
+    t.integer "sock_2_id"
+    t.datetime "updated_at", null: false
+    t.index ["sock_1_id"], name: "index_matches_on_sock_1_id"
+    t.index ["sock_2_id"], name: "index_matches_on_sock_2_id"
+  end
+
   create_table "socks", force: :cascade do |t|
     t.integer "age"
     t.string "color"
@@ -21,4 +30,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_202257) do
     t.string "name"
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "matches", "socks", column: "sock_1_id"
+  add_foreign_key "matches", "socks", column: "sock_2_id"
 end

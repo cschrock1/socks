@@ -1,0 +1,6 @@
+%h1 Create a new match for your sock!
+
+= form_with(model: @match, path: new_sock_match_path(sock_id: @sock.id)) do |f|
+  %div
+    = form.label :match_id
+    = form.select :match_id, [["free",1],["hello",2],["world",3]]

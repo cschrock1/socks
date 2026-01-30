@@ -1,5 +1,6 @@
-class SocksController < ApplicationController
-  before_action :set_sock, only: %i[ show edit update destroy ]
+class MatchesController < ApplicationController
+    # before_action :load_sock
+  
 
   # GET /socks or /socks.json
   def index
@@ -10,9 +11,9 @@ class SocksController < ApplicationController
   def show
   end
 
-  # GET /socks/new
+  # GET /socks/{:sock_id}/matches/new
   def new
-    @sock = Sock.new
+    @match = Match.new
   end
 
   # GET /socks/1/edit
@@ -66,5 +67,11 @@ class SocksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def sock_params
       params.expect(sock: [ :name, :description, :gender, :age, :height, :color ])
+    end
+
+
+private 
+    def load_sock
+        @sock = Sock.find(params[:sock_id])
     end
 end

@@ -14,6 +14,7 @@ class MatchesController < ApplicationController
   # GET /socks/{:sock_id}/matches/new
   def new
     @match = Match.new
+    @socks = Sock.all
   end
 
   # GET /socks/1/edit

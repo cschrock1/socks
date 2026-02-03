@@ -20,3 +20,7 @@ body {
   color: #222;
   background-color: #fafafa;
 }
+
+.sock.matched {
+  background-color: green;
+}

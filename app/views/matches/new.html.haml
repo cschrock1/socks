@@ -1,14 +1,15 @@
--#%h1 Create a new match for your sock!
+%h1
+  💕 What sock do you want to match 🧦#{@sock.name} with?
 
--#= form_with(model: @match, path: new_sock_match_path(sock_id: @sock.id)) do |f|
--#  %div
--#    = form.label :match_id
--#    = form.select :match_id, [["free", 1],["hello", 2],["world", 3]]
-
-= @socks.inspect
-
-= form_for @match do |f|
-  = f.label :sock_id, "Choose a sock"
-  = f.select :sock_id, socks_options
-
-  = f.submit "Create Match"
+= form_with(model: @match, url: sock_matches_path(@sock)) do |f|
+  - @socks.each do |sock|
+    - next if sock.id == @sock.id
+    .sock-box
+      = f.radio_button :sock_2_id, sock.id
+      = f.label "sock_2_id_#{sock.id}" do
+        %h3
+          🧦
+          = sock.name
+        %p= sock.description
+  %div
+    = f.submit "✅ Finalize Match"

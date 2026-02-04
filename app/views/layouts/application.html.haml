@@ -14,4 +14,12 @@
     %link{:href => "/favicon.png", :rel => "apple-touch-icon"}/
     = stylesheet_link_tag :app
   %body
-    = yield
+    %nav.navbar
+      .container
+        = link_to "🧦 Socks App", root_path, class: "navbar-brand"
+        .navbar-links
+          = link_to "🏠 Home", root_path
+          = link_to "🧦 All Socks", socks_path
+          = link_to "➕ New Sock", new_sock_path
+    .container
+      = yield

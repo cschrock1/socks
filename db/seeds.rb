@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+[
+    {
+        name:
+        description: "A green ankle sock",
+        gender: "male",
+        age: "2",
+        height: "ankle",
+        color: "green",
+    }
+]

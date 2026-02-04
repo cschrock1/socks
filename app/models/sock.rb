@@ -1,10 +1,20 @@
-# a model is a representation of data and business logic in the application
 class Sock < ApplicationRecord
-    has_many :matches_as_sock_1, class_name: 'Match', foreign_key: 'sock_1_id', dependent: :destroy
-    has_many :matches_as_sock_2, class_name: 'Match', foreign_key: 'sock_2_id', dependent: :destroy
-    
-    def matched_socks
-        matched = matches_as_sock_1.includes(:sock_2).map(&:sock_2) + matches_as_sock_2.includes(:sock_1).map(&:sock_1)
-        matched.uniq
-    end
+  has_one :match_as_sock_1,
+           class_name: "Match",
+           foreign_key: :sock_1_id,
+           dependent: :destroy
+
+  has_one :match_as_sock_2,
+           class_name: "Match",
+           foreign_key: :sock_2_id,
+           dependent: :destroy
+  
+  def match
+    # NOTE: Should "Match" actually be named "Pair"? I think of `sock.match` returning the other sock.
+    Match.find_by("sock_1_id = :id OR sock_2_id = :id", id: id)
+  end
+
+  def matched?
+    match.present?
+  end
 end

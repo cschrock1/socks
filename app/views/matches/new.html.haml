@@ -1,15 +1,8 @@
-%h1
-  💕 What sock do you want to match 🧦#{@sock.name} with?
+%h1 What sock do you want to match #{@sock.name} with?
 
-= form_with(model: @match, url: sock_matches_path(@sock)) do |f|
-  - @socks.each do |sock|
-    - next if sock.id == @sock.id
-    .sock-box
-      = f.radio_button :sock_2_id, sock.id
-      = f.label "sock_2_id_#{sock.id}" do
-        %h3
-          🧦
-          = sock.name
-        %p= sock.description
+= form_with(model: @match, url: sock_matches_path(sock_id: @sock.id)) do |f|
   %div
-    = f.submit "✅ Finalize Match"
+    = f.label :match_id
+    = f.select :match_id, socks_options
+  %div
+    = f.submit "Finalize Match"

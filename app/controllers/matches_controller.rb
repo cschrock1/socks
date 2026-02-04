@@ -1,15 +1,84 @@
-class MatchesController < ApplicationController
-    before_action :load_sock
+# class MatchesController < ApplicationController
+#     before_action :load_sock
   
 
-  # GET /socks or /socks.json
-  def index
-    @match = Match.new
-  end
+#   # GET /socks or /socks.json
+#   def index
+#     @match = Match.new
+#   end
 
-  # GET /socks/1 or /socks/1.json
-  def show
-  end
+#   # GET /socks/1 or /socks/1.json
+#   def show
+#   end
+
+#   # GET /socks/{:sock_id}/matches/new
+#   def new
+#     @match = Match.new
+#     @socks = Sock.all
+#   end
+
+#   # GET /socks/1/edit
+#   def edit
+#   end
+
+#   # POST /socks or /socks.json
+#   def create
+#     puts params
+#     @match = Match.new(sock_1_id: params[:sock_id], sock_2_id: params[:match][:match_id])
+#     respond_to do |format|
+#       if @match.save
+#         format.html { redirect_to sock_path(@sock), notice: "Match was successfully created." }
+#         format.json { render :show, status: :created, location: @match }
+#       else
+#         format.html { render :new, status: :unprocessable_entity }
+#         format.json { render json: @match.errors, status: :unprocessable_entity }
+#       end
+#     end
+#   end
+
+#   # PATCH/PUT /socks/1 or /socks/1.json
+#   def update
+#     respond_to do |format|
+#       if @sock.update(sock_params)
+#         format.html { redirect_to @sock, notice: "Sock was successfully updated.", status: :see_other }
+#         format.json { render :show, status: :ok, location: @sock }
+#       else
+#         format.html { render :edit, status: :unprocessable_entity }
+#         format.json { render json: @sock.errors, status: :unprocessable_entity }
+#       end
+#     end
+#   end
+
+#   # DELETE /socks/1 or /socks/1.json
+#   def destroy
+#     @match.destroy!
+
+#     respond_to do |format|
+#       format.html { redirect_to sock_path(@sock), notice: "Match was successfully destroyed.", status: :see_other }
+#       format.json { head :no_content }
+#     end
+#   end
+
+#   private
+# #    # Use callbacks to share common setup or constraints between actions.
+# #    def set_sock
+# #      @sock = Sock.find(params.expect(:id))
+# #    end
+
+# #    # Only allow a list of trusted parameters through.
+# #    def sock_params
+# #      params.expect(sock: [ :name, :description, :gender, :age, :height, :color ])
+# #    end
+
+
+# private 
+#     def load_sock
+#         @sock = Sock.find(params[:sock_id])
+#     end
+# end
+
+class MatchesController < ApplicationController
+  before_action :load_sock
 
   # GET /socks/{:sock_id}/matches/new
   def new
@@ -17,62 +86,16 @@ class MatchesController < ApplicationController
     @socks = Sock.all
   end
 
-  # GET /socks/1/edit
-  def edit
-  end
-
-  # POST /socks or /socks.json
+  # POST /socks/{sock_id}/matches
   def create
-    puts params
     @match = Match.new(sock_1_id: params[:sock_id], sock_2_id: params[:match][:match_id])
-    respond_to do |format|
-      if @match.save
-        format.html { redirect_to sock_path(@sock), notice: "Match was successfully created." }
-        format.json { render :show, status: :created, location: @match }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
-      end
-    end
+    @match.save
+    redirect_to @sock, notice: "Match was successfully created."
   end
 
-  # PATCH/PUT /socks/1 or /socks/1.json
-  def update
-    respond_to do |format|
-      if @sock.update(sock_params)
-        format.html { redirect_to @sock, notice: "Sock was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @sock }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @sock.errors, status: :unprocessable_entity }
-      end
-    end
+private
+
+  def load_sock
+    @sock = Sock.find(params[:sock_id])
   end
-
-  # DELETE /socks/1 or /socks/1.json
-  def destroy
-    @match.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to sock_path(@sock), notice: "Match was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-#    # Use callbacks to share common setup or constraints between actions.
-#    def set_sock
-#      @sock = Sock.find(params.expect(:id))
-#    end
-
-#    # Only allow a list of trusted parameters through.
-#    def sock_params
-#      params.expect(sock: [ :name, :description, :gender, :age, :height, :color ])
-#    end
-
-
-private 
-    def load_sock
-        @sock = Sock.find(params[:sock_id])
-    end
 end

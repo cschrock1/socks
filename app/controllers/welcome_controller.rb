@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < ActionController::Base
   layout "custom_page"
 
   before_action :redirect_signed_in_users
@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
 private
 
   def redirect_signed_in_users
-    if current_user
+    if user_signed_in?
       redirect_to socks_path
     end
   end

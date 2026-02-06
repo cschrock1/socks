@@ -1,4 +1,5 @@
 class SocksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_sock, only: %i[ show edit update destroy ]
 
   # GET /socks or /socks.json

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :socks do
     resources :matches
   end
@@ -12,6 +13,11 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  # Convenience routes for login/signup
+  get "login", to: redirect("/users/sign_in")
+  get "signup", to: redirect("/users/sign_up")
+
   # Defines the root path route ("/")
+  get "/" => "welcome#index"
   root "welcome#index"
 end

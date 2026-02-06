@@ -22,3 +22,7 @@
   %p
     %strong Color:
     = sock.color
+
+  .actions
+    = link_to 'Edit', edit_sock_path(sock), class: 'btn btn-primary'
+    = button_to 'Delete', sock_path(sock), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

@@ -20,6 +20,18 @@
         .navbar-links
           = link_to "🏠 Home", root_path
           = link_to "🧦 All Socks", socks_path
-          = link_to "➕ New Sock", new_sock_path
+          - if user_signed_in?
+            = link_to "➕ New Sock", new_sock_path
+            .user-menu
+              %span= current_user.email
+              = form_with url: destroy_user_session_path, method: :delete, local: true do |f|
+                = f.submit "Sign out"
+          - else
+            = link_to "🔐 Sign up", new_user_registration_path, class: "btn btn-sm btn-primary"
+            = link_to "🔑 Log in", new_user_session_path, class: "btn btn-sm btn-outline-primary"
     .container
+      - if notice
+        .alert.alert-success= notice
+      - if alert
+        .alert.alert-danger= alert
       = yield

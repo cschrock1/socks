@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < ApplicationController::Base
   layout "custom_page"
 
   def index

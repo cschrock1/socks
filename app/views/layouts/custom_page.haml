@@ -16,4 +16,6 @@
     - if @custom_stylesheet.present?
       = stylesheet_link_tag @custom_stylesheet
   %body
+    %p.notice= notice
+    %p.alert= alert
     = yield

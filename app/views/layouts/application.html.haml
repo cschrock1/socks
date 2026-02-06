@@ -14,4 +14,6 @@
     %link{:href => "/favicon.png", :rel => "apple-touch-icon"}/
     = stylesheet_link_tag :app
   %body
+    %p.notice= notice
+    %p.alert= alert
     = yield

@@ -24,6 +24,7 @@ class SocksController < ApplicationController
   # POST /socks or /socks.json
   def create
     @sock = Sock.new(sock_params)
+    @sock.owner = current_user
 
     respond_to do |format|
       if @sock.save

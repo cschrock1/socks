@@ -1,5 +1,5 @@
 module SocksHelper
-  def is_matched_class sock
+  def is_matched_class(sock)
     if sock.matched?
       "matched"
     end

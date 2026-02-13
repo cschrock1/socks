@@ -1,9 +1,20 @@
-%h1 What sock do you want to propose #{@sock.name} with?
+%h1 New Proposal
 
--# Reuses the same form structure as matches/new with a different submit action.
-= form_with(model: @proposal, url: sock_proposals_path(sock_id: @sock.id)) do |f|
-  %div
-    = f.label :match_id
-    = f.select :match_id, socks_options
-  %div
-    = f.submit "Send Proposal"
+.proposal-form
+  = form_with model: @proposal, url: proposals_path, local: true do |f|
+    - if defined?(@sock) && @sock.present?
+      .field
+        %label Sock A
+        %div.selected-sock= @sock.name
+        = f.hidden_field :sock_1_id, value: @sock.id
+    - else
+      .field
+        = f.label :sock_1_id, "Sock A"
+        = f.select :sock_1_id, socks_options, { include_blank: "Select a sock" }, { class: "select" }
+
+    .field
+      = f.label :sock_2_id, "Sock B"
+      = f.select :sock_2_id, socks_options, { include_blank: "Select a sock" }, { class: "select" }
+
+    .actions
+      = f.submit "Propose Match", class: "button primary"

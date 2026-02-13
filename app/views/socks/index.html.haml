@@ -2,12 +2,12 @@
 
 - content_for :title, "Socks"
 
-%h1 Socks
+.socks-page
+  .socks-header
+    %h1 Socks
+    .header-actions
+      = link_to "New sock", new_sock_path, class: "button primary"
 
-%div{id: "socks"}
-  - @socks.each do |sock|
-    = render sock
-    %p
-      = link_to "Show this sock", sock
-
-= link_to "New sock", new_sock_path
+  %div.socks-grid
+    - @socks.each do |sock|
+      = render sock

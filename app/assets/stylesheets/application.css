@@ -24,3 +24,201 @@ body {
 .sock.matched {
   background-color: green;
 }
+
+/* App container and navbar styling */
+.app-container {
+  max-width: 1100px;
+  margin: 4.25rem auto 3rem; /* leave space for fixed navbar */
+  padding: 0 1rem;
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: linear-gradient(90deg, #ffffffcc, #f7fcffcc);
+  border-bottom: 1px solid rgba(20,20,20,0.04);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav .nav-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.brand-link {
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background: rgba(70,198,232,0.08);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+
+.button.primary {
+  background-color: #26a6c4;
+  color: #fff;
+}
+
+.button.secondary {
+  background: transparent;
+  color: #26a6c4;
+  border-color: rgba(38,166,196,0.15);
+}
+
+.button.link {
+  background: transparent;
+  color: #333;
+  border: none;
+  padding: 0.4rem 0.6rem;
+}
+
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .app-container { margin-top: 6rem; }
+}
+
+/* Proposal form styles */
+.proposal-form {
+  max-width: 680px;
+  margin: 1.25rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(20,20,20,0.04);
+}
+.proposal-form .field {
+  margin-bottom: 0.75rem;
+}
+.proposal-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.proposal-form .select {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #e6eef2;
+}
+
+.selected-sock {
+  padding: 0.5rem 0.6rem;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #e6eef2;
+}
+
+/* Socks dashboard styles */
+.socks-page .socks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.socks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(20,20,20,0.06);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(30,30,30,0.04);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.badge {
+  background: linear-gradient(90deg,#26a6c4,#46c6e8);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.card-body {
+  flex: 1 1 auto;
+}
+
+.card-desc {
+  color: #444;
+  margin: 0 0 0.65rem 0;
+}
+
+.attributes { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.6rem; }
+.attributes .attr { font-size: 0.9rem; color: #333; }
+
+.card-footer { display:flex; gap:0.5rem; align-items:center; }
+
+/* Improve buttons inside cards */
+.button.link { background: transparent; border: 1px solid rgba(30,30,30,0.06); }
+.button.secondary { background: transparent; border: 1px solid rgba(38,166,196,0.12); color: #26a6c4; }
+
+@media (max-width: 720px) {
+  .socks-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+
+/* Proposal & Match action spacing */
+.proposal-actions, .match-actions { margin-top: 0.4rem; display:flex; gap:0.5rem; }
+.proposal-actions .button.primary, .proposal-actions .button.link, .match-actions .button { padding: 0.35rem 0.6rem; font-size: 0.9rem; }

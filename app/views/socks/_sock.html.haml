@@ -1,25 +1,29 @@
-%div{id: dom_id(sock), class: ["sock", is_matched_class(sock)]}
-  %p
-    %strong Name:
-    = sock.name
 
-  %p
-    %strong Description:
-    = sock.description
+%article{id: dom_id(sock), class: ["sock card", is_matched_class(sock)], style: (match_card_style(sock) if sock.matched?)}
+  .card-header
+    %h3.card-title= sock.name
+    - if sock.matched?
+      - accent = match_accent_color(sock)
+      %span.badge{ style: ("background: #{accent}; color: #fff;" if accent) } Matched
 
-  %p
-    %strong Gender:
-    = sock.gender
+  .card-body
+    - if sock.description.present?
+      %p.card-desc= truncate(sock.description, length: 140)
+    .attributes
+      %div.attr
+        %strong Age:
+        = " " + (sock.age.present? ? sock.age.to_s : "—")
+      %div.attr
+        %strong Gender:
+        = " " + (sock.gender || "—")
+      %div.attr
+        %strong Color:
+        = " " + (sock.color || "—")
+      %div.attr
+        %strong Height:
+        = " " + (sock.height || "—")
 
-  %p
-    %strong Age:
-    = sock.age
-
-  %p
-    %strong Height:
-    = sock.height
-
-  %p
-    %strong Color:
-    = sock.color
+  .card-footer
+    = link_to "Show", sock, class: "button link"
+    = link_to "Edit", edit_sock_path(sock), class: "button secondary"
 

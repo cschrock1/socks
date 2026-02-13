@@ -1,0 +1,11 @@
+%h1 Matches
+
+%ul.matches
+  - @matches.each do |m|
+    %li
+      = link_to m.sock_1.name, sock_path(m.sock_1)
+      |  ↔
+      = link_to m.sock_2.name, sock_path(m.sock_2)
+      %span.meta= " — " + (m.created_at&.to_date&.to_s || "")
+      .match-actions
+        = button_to "Remove", match_path(m), method: :delete, data: { confirm: "Remove this match?" }, class: "button link"

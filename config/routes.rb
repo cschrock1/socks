@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
+  # Top-level indexes so navbar can link to matches/proposals across the site
+  resources :matches, only: [:index, :destroy]
+  # Allow creating proposals from a top-level form as well as nested under a sock
+  resources :proposals, only: [:index, :new, :create] do
+    member do
+      post :accept
+      post :reject
+    end
+  end
   resources :socks do
     resources :matches
     resources :proposals

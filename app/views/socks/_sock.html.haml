@@ -1,10 +1,9 @@
 
-%article{id: dom_id(sock), class: ["sock card", is_matched_class(sock)], style: (match_card_style(sock) if sock.matched?)}
+%article{id: dom_id(sock), class: ["sock card", is_matched_class(sock), (match_color_class(sock) if sock.matched?)]}
   .card-header
     %h3.card-title= sock.name
     - if sock.matched?
-      - accent = match_accent_color(sock)
-      %span.badge{ style: ("background: #{accent}; color: #fff;" if accent) } Matched
+      %span.badge.badge-accent Matched
 
   .card-body
     - if sock.description.present?

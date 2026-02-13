@@ -2,6 +2,8 @@
   .nav-inner
     .brand
       = link_to "Socks", root_path, class: "brand-link"
+    %button#nav-toggle.nav-toggle{aria: { label: 'Toggle navigation' }}
+      %span.hamburger
     %nav.nav-links
       = link_to "Browse", socks_path, class: "nav-link"
       = link_to "Matches", matches_path, class: "nav-link"
@@ -13,3 +15,39 @@
       - else
         = link_to "Sign In", new_user_session_path, class: "button primary"
         = link_to "Sign Up", new_user_registration_path, class: "button secondary"
+
+    / Mobile menu (shown on small screens)
+    .mobile-menu
+      %nav
+        = link_to "Browse", socks_path, class: "nav-link"
+        = link_to "Matches", matches_path, class: "nav-link"
+        = link_to "Proposals", proposals_path, class: "nav-link"
+      .mobile-actions
+        - if user_signed_in?
+          = link_to "New Proposal", new_polymorphic_path(Proposal), class: "button primary"
+          = button_to "Sign Out", destroy_user_session_path, method: :delete, class: "button link"
+        - else
+          = link_to "Sign In", new_user_session_path, class: "button primary"
+          = link_to "Sign Up", new_user_registration_path, class: "button secondary"
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('nav-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function(e){
+      document.body.classList.toggle('nav-open');
+    });
+  });
+
+  // Fallback confirm: intercept elements with data-confirm when rails-ujs isn't present
+  document.addEventListener('click', function(e){
+    var target = e.target.closest('[data-confirm]');
+    if (!target) return;
+    var msg = target.getAttribute('data-confirm');
+    if (!msg) return;
+    if (!window.confirm(msg)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+    }
+  });

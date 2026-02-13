@@ -28,11 +28,23 @@ module SocksHelper
     palette[ match.id % palette.length ]
   end
 
-  # Inline style for a matched sock card
+  # Return a deterministic index into the palette for CSS class mapping
+  def match_color_index(sock)
+    return nil unless sock.matched?
+    match = sock.match
+    return nil unless match
+    match.id % 10
+  end
+
+  # CSS class name for matched sock color (e.g. "match-color-2")
+  def match_color_class(sock)
+    idx = match_color_index(sock)
+    idx ? "match-color-#{idx}" : nil
+  end
+
+  # Inline style kept for backward compatibility (no-op now)
   def match_card_style(sock)
-    entry = match_palette_entry_for(sock)
-    return nil unless entry
-    "background-color: #{entry[:bg]}; border-left: 6px solid #{entry[:accent]};"
+    nil
   end
 
   # Accent color (hex) for badges or accents for a matched sock

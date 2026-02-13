@@ -222,3 +222,69 @@ body {
 /* Proposal & Match action spacing */
 .proposal-actions, .match-actions { margin-top: 0.4rem; display:flex; gap:0.5rem; }
 .proposal-actions .button.primary, .proposal-actions .button.link, .match-actions .button { padding: 0.35rem 0.6rem; font-size: 0.9rem; }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle .hamburger {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #333;
+  position: relative;
+}
+.nav-toggle .hamburger::before, .nav-toggle .hamburger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #333;
+}
+.nav-toggle .hamburger::before { top: -6px; }
+.nav-toggle .hamburger::after { top: 6px; }
+
+.mobile-menu { display: none; }
+body.nav-open .mobile-menu { display: block; position: absolute; top: 64px; left: 0; right: 0; background: white; border-bottom: 1px solid rgba(0,0,0,0.04); padding: 1rem; z-index: 900; }
+body.nav-open .nav-links { display: none; }
+
+@media (max-width: 720px) {
+  .nav-toggle { display: inline-flex; }
+  .actions { display: none; }
+  .mobile-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+}
+
+/* Palette classes for matched cards (moved from inline styles) */
+.match-color-0 { background-color: #fff7f8; border-left: 6px solid #ff6b6b; }
+.match-color-0 .badge-accent { background: #ff6b6b; color: #fff; }
+.match-color-1 { background-color: #f0fdff; border-left: 6px solid #26a6c4; }
+.match-color-1 .badge-accent { background: #26a6c4; color: #fff; }
+.match-color-2 { background-color: #f7fff6; border-left: 6px solid #34d399; }
+.match-color-2 .badge-accent { background: #34d399; color: #fff; }
+.match-color-3 { background-color: #fff8f1; border-left: 6px solid #fb923c; }
+.match-color-3 .badge-accent { background: #fb923c; color: #fff; }
+.match-color-4 { background-color: #f6f9ff; border-left: 6px solid #60a5fa; }
+.match-color-4 .badge-accent { background: #60a5fa; color: #fff; }
+.match-color-5 { background-color: #fbf7ff; border-left: 6px solid #a78bfa; }
+.match-color-5 .badge-accent { background: #a78bfa; color: #fff; }
+.match-color-6 { background-color: #fffaf0; border-left: 6px solid #facc15; }
+.match-color-6 .badge-accent { background: #facc15; color: #fff; }
+.match-color-7 { background-color: #f0fdf4; border-left: 6px solid #10b981; }
+.match-color-7 .badge-accent { background: #10b981; color: #fff; }
+.match-color-8 { background-color: #f0f9ff; border-left: 6px solid #0284c7; }
+.match-color-8 .badge-accent { background: #0284c7; color: #fff; }
+.match-color-9 { background-color: #fff0f6; border-left: 6px solid #fb7185; }
+.match-color-9 .badge-accent { background: #fb7185; color: #fff; }
+
+/* Simple confirmation modal styles (for potential custom modal) */
+.confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); display: none; align-items:center; justify-content:center; z-index:2000; }
+.confirm-overlay.active { display: flex; }
+.confirm-box { background: #fff; padding: 1rem; border-radius: 8px; max-width: 420px; width: 96%; box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+.confirm-actions { display:flex; gap:0.5rem; justify-content:flex-end; margin-top:0.75rem; }

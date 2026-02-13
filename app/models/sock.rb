@@ -9,6 +9,16 @@ class Sock < ApplicationRecord
            foreign_key: :sock_2_id,
            dependent: :destroy
 
+  has_many :proposals_as_sock_1,
+           class_name: "Proposal",
+           foreign_key: :sock_1_id,
+           dependent: :destroy
+
+  has_many :proposals_as_sock_2,
+           class_name: "Proposal",
+           foreign_key: :sock_2_id,
+           dependent: :destroy
+
   belongs_to :owner, class_name: "User", foreign_key: :user_id
 
   def match

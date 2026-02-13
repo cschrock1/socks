@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_06_203526) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_12_160731) do
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "sock_1_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_203526) do
     t.datetime "updated_at", null: false
     t.index ["sock_1_id"], name: "index_matches_on_sock_1_id"
     t.index ["sock_2_id"], name: "index_matches_on_sock_2_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "sock_1_id", null: false
+    t.integer "sock_2_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sock_1_id"], name: "index_proposals_on_sock_1_id"
+    t.index ["sock_2_id"], name: "index_proposals_on_sock_2_id"
   end
 
   create_table "socks", force: :cascade do |t|
@@ -47,5 +56,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_203526) do
 
   add_foreign_key "matches", "socks", column: "sock_1_id"
   add_foreign_key "matches", "socks", column: "sock_2_id"
+  add_foreign_key "proposals", "socks", column: "sock_1_id"
+  add_foreign_key "proposals", "socks", column: "sock_2_id"
   add_foreign_key "socks", "users"
 end
